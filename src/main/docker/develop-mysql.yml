@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  onemedics-auth-db:
+    container_name: test-crawling-db
+    image: mariadb:10.3.7
+    volumes:
+      - ./mysql-auth/:/var/lib/mysql/
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=1111
+      - MYSQL_PASSWORD=1111
+      - MYSQL_DATABASE=crawling-db
+    ports:
+      - 3310:3306
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp --sql_mode=IGNORE_SPACE --max_connections=10000 --wait_timeout=60000
